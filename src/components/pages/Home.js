@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import { BigText, BrandName, Button, SmallText, TextButton } from "../shared/styledComponents";
 import BGimageSrc from "../../assets/images/image05.webp";
+import { useHistory } from "react-router";
 
 export default function Home() {
+    let history = useHistory();
+
     return (
         <HomeStyle>
             <BigText>
@@ -12,10 +15,10 @@ export default function Home() {
                 Receba em casa um box com chás, produtos organicos, incensos e
                 muito mais...
             </SmallText>
-            <BGImage>
+            <BGImage onClick={()=> history.push('/sign-up')}>
                 <Button>Quero começar</Button>
             </BGImage>
-            <TextButton>Já sou grato</TextButton>
+            <TextButton onClick={()=> history.push('/login')}>Já sou grato</TextButton>
         </HomeStyle>
     );
 }

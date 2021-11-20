@@ -10,7 +10,7 @@ export default function App() {
                     <Home />
                 </Route>
                 <Route path="/sign-up" exact />
-                <Route path="/sign-in" exact />
+                <Route path="/login" exact />
                 <Route path="*">
                     <Redirect to="/" />
                 </Route>
