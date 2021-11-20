@@ -18,9 +18,11 @@ export default function SignUp() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     let history = useHistory();
+    const [isLoading, setIsloading] = useState(false);
 
     function signUp(e) {
         e.preventDefault();
+        setIsloading(true);
         const body = {
             username: name,
             email,
@@ -28,11 +30,14 @@ export default function SignUp() {
         };
         postSignUp(body)
             .then(res => history.push("/login"))
-            .catch(err => sendAlert({
-                type: 'error',
-                title: 'Algo deu errado',
-                text: 'Email já utilizado. Tente novamente com outro email.'
-            }))
+            .catch(err => {
+                sendAlert({
+                    type: 'error',
+                    title: 'Algo deu errado',
+                    text: 'Email já utilizado. Tente novamente com outro email.'
+                });
+                setIsloading(false);
+        });
     }
 
     return (
@@ -49,6 +54,7 @@ export default function SignUp() {
                     title="Nomes devem ter no minimo 3 caracteres."
                     placeholder="Nome"
                     required
+                    disabled={isLoading}
                 />
                 <FrontPageInput
                     type="email"
@@ -58,6 +64,7 @@ export default function SignUp() {
                     title="exemplo@exemplo.com"
                     placeholder="Email"
                     required
+                    disabled={isLoading}
                 />
                 <FrontPageInput
                     type="password"
@@ -67,6 +74,7 @@ export default function SignUp() {
                     title="Senhas dever ter no minimo 4 caracteres."
                     placeholder="Senha"
                     required
+                    disabled={isLoading}
                 />
                 <FrontPageInput
                     type="password"
@@ -76,6 +84,7 @@ export default function SignUp() {
                     title="Senhas devem ser iguais"
                     placeholder="Confirmar senha"
                     required
+                    disabled={isLoading}
                 />
                 <Button
                     type="submit"
@@ -83,10 +92,11 @@ export default function SignUp() {
                     height="56px"
                     font="36px"
                     marginTop="60px"
+                    disabled={isLoading}
                 >
                     Cadastrar
                 </Button>
-                <TextButton onClick={() => history.push("/login")}>
+                <TextButton onClick={() => isLoading || history.push("/login")}>
                     Já sou grato
                 </TextButton>
             </FrontPageForm>
