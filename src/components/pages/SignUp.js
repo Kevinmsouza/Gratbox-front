@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
+import { postSignUp } from "../../services/gratibox";
+import { sendAlert } from "../shared/alerts";
 import {
     BigText,
     BrandName,
@@ -19,6 +21,18 @@ export default function SignUp() {
 
     function signUp(e) {
         e.preventDefault();
+        const body = {
+            username: name,
+            email,
+            password,
+        };
+        postSignUp(body)
+            .then(res => history.push("/login"))
+            .catch(err => sendAlert({
+                type: 'error',
+                title: 'Algo deu errado',
+                text: 'Email já utilizado. Tente novamente com outro email.'
+            }))
     }
 
     return (
@@ -31,7 +45,7 @@ export default function SignUp() {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    pattern='.{3,}'
+                    pattern=".{3,}"
                     title="Nomes devem ter no minimo 3 caracteres."
                     placeholder="Nome"
                     required
@@ -40,6 +54,8 @@ export default function SignUp() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    title="exemplo@exemplo.com"
                     placeholder="Email"
                     required
                 />
@@ -47,7 +63,7 @@ export default function SignUp() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    pattern='.{4,}'
+                    pattern=".{4,}"
                     title="Senhas dever ter no minimo 4 caracteres."
                     placeholder="Senha"
                     required
