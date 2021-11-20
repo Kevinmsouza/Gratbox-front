@@ -15,8 +15,8 @@ export default function Home() {
                 Receba em casa um box com chás, produtos organicos, incensos e
                 muito mais...
             </SmallText>
-            <BGImage onClick={()=> history.push('/sign-up')}>
-                <Button>Quero começar</Button>
+            <BGImage>
+                <Button onClick={()=> history.push('/sign-up')}>Quero começar</Button>
             </BGImage>
             <TextButton onClick={()=> history.push('/login')}>Já sou grato</TextButton>
         </HomeStyle>
