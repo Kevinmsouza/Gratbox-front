@@ -8,7 +8,7 @@ export default function Home() {
 
     return (
         <HomeStyle>
-            <BigText>
+            <BigText marginTop='55px'>
                 Bem vindo ao <BrandName>GratiBox</BrandName>
             </BigText>
             <SmallText>

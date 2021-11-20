@@ -7,7 +7,7 @@ const PageStyle = styled.article`
 `;
 
 const BigText = styled.p`
-    margin-top: 55px;
+    margin-top: ${ props => props.marginTop || "101px" };
     font-size: 28px;
     font-weight: 500;
     text-align: center;
@@ -43,6 +43,21 @@ const TextButton = styled.p`
     line-height: 21px;
 `;
 
+const FrontPageForm = styled.form`
+    margin-top: 43px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const FrontPageInput = styled.input`
+    width: 325px;
+    height: 64px;
+    border: 1px solid #604848;
+    border-radius: 10px;
+`;
+
+
 export { 
     PageStyle,
     BigText,
@@ -50,4 +65,6 @@ export {
     SmallText,
     Button,
     TextButton,
+    FrontPageForm,
+    FrontPageInput,
 };
