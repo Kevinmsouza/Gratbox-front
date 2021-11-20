@@ -126,3 +126,9 @@ table {
 * {
     box-sizing: border-box;
 }
+
+body {
+    background-color: #6d7ce4;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+}
