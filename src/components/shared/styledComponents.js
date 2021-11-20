@@ -34,6 +34,7 @@ const Button = styled.button`
     border: none;
     border-radius: 10px;
     color: #fff;
+    margin-top: ${props => props.marginTop || "0px"};
 `;
 
 const TextButton = styled.p`
@@ -55,6 +56,21 @@ const FrontPageInput = styled.input`
     height: 64px;
     border: 1px solid #604848;
     border-radius: 10px;
+    font-weight: 500;
+    font-size: 24px;
+    padding-left: 17px;
+    margin-bottom: 5px;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    &:focus{
+        outline: none;
+    }
+    &::placeholder{
+        color: rgba(96, 72, 72, 0.4);
+        font-weight: 500;
+        font-size: 24px;
+        
+    }
 `;
 
 
