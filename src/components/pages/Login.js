@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
+import { postLogin } from "../../services/gratibox";
+import { sendAlert } from "../shared/alerts";
 import { BigText, BrandName, Button, FrontPageForm, FrontPageInput, PageStyle, TextButton } from "../shared/styledComponents";
 
 
@@ -9,12 +11,32 @@ export default function Login() {
     let history = useHistory();
     const [isLoading, setIsloading] = useState(false);
 
+    function login(e) {
+        e.preventDefault();
+        setIsloading(true);
+        const body = {
+            email,
+            password,
+        };
+        postLogin(body)
+            .then(res => history.push("/plan"))
+            .catch(err => {
+                sendAlert({
+                    type: 'error',
+                    title: 'Algo deu errado',
+                    text: 'Email/senha incorreto(s), tente novamente.'
+                });
+                setPassword("")
+                setIsloading(false);
+        });
+    }
+
     return(
         <PageStyle>
             <BigText>
                 Bem vindo ao <BrandName>GratiBox</BrandName>
             </BigText>
-            <FrontPageForm onSubmit={''}>
+            <FrontPageForm onSubmit={login}>
                 <FrontPageInput
                     type="email"
                     value={email}
