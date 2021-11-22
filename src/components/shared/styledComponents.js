@@ -18,7 +18,7 @@ const BrandName = styled.span`
 `;
 
 const SmallText = styled.p`
-    margin-top: 45px;
+    margin-top: ${props => props.marginTop || "22px"};
     font-size: 18px;
     font-weight: 300;
     text-align: center;

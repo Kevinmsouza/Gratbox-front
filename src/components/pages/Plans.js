@@ -39,8 +39,8 @@ export default function Plans() {
             <PlanCard>
                 <CardImg src={image04} />
                 <BlueText>
-                Você recebe um box por mês.      
-                Ideal para quem está começando agora.
+                    Você recebe um box por mês.      
+                    Ideal para quem está começando agora.
                 </BlueText>
                 <Button 
                     width='168px' 
