@@ -23,6 +23,7 @@ export default function SignPlanDelivery() {
     const [postalCode, setPostalCode] = useState('');
     const [city, setCity] = useState('');
     const [stateId, setStateId] = useState('0');
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (!userData) history.push('/');
@@ -33,6 +34,7 @@ export default function SignPlanDelivery() {
     function signNewPlan(e) {
         e.preventDefault();
         if (stateId === '0') return;
+        setIsLoading(true);
         const body = {
             ...newPlan,
             fullName,
@@ -46,12 +48,15 @@ export default function SignPlanDelivery() {
                 setUserData({...userData, planId: body.planId});
                 history.push('/plan-details');
             })
-            .catch(err => sendAlert({
-                type: 'error',
-                title: 'Algo deu errado',
-                text: `Verifique todos os campos e tente novamente. 
-                    Se o erro persistir tente atualizar a pagina`
-            }))
+            .catch(err => {
+                sendAlert({
+                    type: 'error',
+                    title: 'Algo deu errado',
+                    text: `Verifique todos os campos e tente novamente. 
+                        Se o erro persistir tente atualizar a pagina`
+                })
+                setIsLoading(false);
+            })
     }
 
     function postalMasker(e) {
@@ -79,6 +84,7 @@ export default function SignPlanDelivery() {
                 <CardImg src={image03} height='172px' marginBottom='30px' />
                 <FormWrapper>
                     <Input 
+                        disabled={isLoading}
                         required
                         type='text'
                         placeholder="Nome completo" 
@@ -86,6 +92,7 @@ export default function SignPlanDelivery() {
                         onChange={(e) => setFullname(e.target.value)}
                     />
                     <Input 
+                        disabled={isLoading}
                         required
                         type='text'
                         placeholder="Endereço de entrega" 
@@ -93,6 +100,7 @@ export default function SignPlanDelivery() {
                         onChange={(e) => setAddress(e.target.value)}
                     />
                     <Input 
+                        disabled={isLoading}
                         required
                         type='text'
                         placeholder="CEP" 
@@ -103,6 +111,7 @@ export default function SignPlanDelivery() {
                     />
                     <Wrapper>
                         <Input 
+                            disabled={isLoading}
                             required
                             type='text'
                             placeholder="Cidade" 
@@ -110,7 +119,12 @@ export default function SignPlanDelivery() {
                             onChange={(e) => setCity(e.target.value)}
                             width='168px'
                         />
-                        <Select value={stateId} onChange={(e) => setStateId(e.target.value)} width='108px'>
+                        <Select
+                            value={stateId}
+                            onChange={(e) => setStateId(e.target.value)} 
+                            width='108px'
+                            disabled={isLoading}
+                        >
                             <option value={0}>Estado</option>
                             {states.map((uf, i) => <option value={i + 1}>{uf}</option>)}
                         </Select>
