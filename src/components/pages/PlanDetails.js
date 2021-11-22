@@ -96,4 +96,8 @@ const ProductsWrapper = styled.div`
     font-size: 18px;
     line-height: 21px;
     margin-top: 25px;
+    @media (max-width: 325px) {
+        margin-top: 05px;
+        font-size: 14px;
+    }
 `;
