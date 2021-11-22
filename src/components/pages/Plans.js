@@ -2,12 +2,12 @@ import { useContext, useEffect } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import UserContext from "../../contexts/UserContext";
-import { BigText, BrandName, PageStyle, SmallText, BlueText, Button } from "../shared/styledComponents";
+import { BigText, BrandName, PageStyle, SmallText, BlueText, Button, CardImg } from "../shared/styledComponents";
 import image04 from "../../assets/images/image04.jpg";
 import image02 from "../../assets/images/image02.jpg";
 
 export default function Plans() {
-    const { userData, setUserData } = useContext(UserContext);
+    const { userData } = useContext(UserContext);
     let history = useHistory();
 
     useEffect(() => {
@@ -69,11 +69,4 @@ const PlanCard = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-`;
-
-const CardImg = styled.img`
-    width: 100%;
-    height: 219px;
-    border-radius: 25px;
-    object-fit: cover;
 `;

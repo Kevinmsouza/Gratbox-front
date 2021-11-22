@@ -74,12 +74,54 @@ const FrontPageInput = styled.input`
 `;
 
 const BlueText = styled.p`
-    margin-top: 20px;
+    margin-top: ${props => props.marginTop || "20px"};
     font-weight: bold;
     font-size: 18px;
     color: #4D65A8;
     max-width: 280px;
     line-height: 21px;
+`;
+
+const WhiteBoard = styled.div`
+    width: 90vw;
+    max-width: 358px;
+    height: 429px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const CardImg = styled.img`
+    width: 100%;
+    height: ${props => props.height || "219px"};
+    border-radius: 25px;
+    object-fit: cover;
+    margin-bottom: ${props => props.marginBottom || "0px"};
+`;
+
+const Select = styled.select`
+    width: 290px;
+    height: 44px;
+    background: rgba(224, 209, 237, 0.62);
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #4D65A8;
+    padding: 0 12px;
+    margin-bottom: 7px;
+    & > option{
+        background: rgba(224, 209, 237, 0.62);
+        color: #4D65A8;
+        font-weight: bold;
+    }
+    &:focus{
+        outline: none;
+    }
 `;
 
 export { 
@@ -92,4 +134,7 @@ export {
     FrontPageForm,
     FrontPageInput,
     BlueText,
+    WhiteBoard,
+    CardImg,
+    Select,
 };

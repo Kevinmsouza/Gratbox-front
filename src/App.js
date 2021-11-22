@@ -6,9 +6,10 @@ import SignUp from "./components/pages/SignUp";
 import Login from "./components/pages/Login";
 import UserContext from "./contexts/UserContext"
 import Plans from "./components/pages/Plans";
+import SignPlan from "./components/pages/SignPlan";
 
 export default function App() {
-    const [userData, setUserData] = useState(null)
+    const [userData, setUserData] = useState(null);
 
     return (
         <UserContext.Provider value={{userData, setUserData}}>
@@ -27,7 +28,7 @@ export default function App() {
                         <Plans />
                     </Route>
                     <Route path="/sign-plan/:planId" exact>
-                        <Plans />
+                        <SignPlan />
                     </Route>
                     <Route path="*">
                         <Redirect to="/" />
