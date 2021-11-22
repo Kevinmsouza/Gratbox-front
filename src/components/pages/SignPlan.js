@@ -13,7 +13,7 @@ export default function SignPlan() {
     const { planId } = useParams();
     const [ selectPlanId, setSelectPlanId] = useState(planId);
     const [ deliveryType, setDeliveryType] = useState('0');
-    const [ products, setProducts ] = useState([true, true, true]);
+    const [ products, setProducts ] = useState([false, false, false]);
     const {setNewPlan} = useContext(NewPlanContext);
 
     useEffect(() => {
@@ -33,7 +33,6 @@ export default function SignPlan() {
             products: products.map((b, i) => b ? i + 1 : false).filter(e => e)
         }
         setNewPlan(body);
-        console.log(body)
         history.push('/sign-plan-delivery')
     }
 

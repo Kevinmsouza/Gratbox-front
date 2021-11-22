@@ -103,7 +103,8 @@ const CardImg = styled.img`
 `;
 
 const Select = styled.select`
-    width: 290px;
+    max-width: ${props => props.width || "290px"};
+    width: 100%;
     height: 44px;
     background: rgba(224, 209, 237, 0.62);
     border-radius: 5px;

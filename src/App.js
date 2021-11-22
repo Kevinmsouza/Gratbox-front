@@ -8,6 +8,7 @@ import UserContext from "./contexts/UserContext"
 import Plans from "./components/pages/Plans";
 import SignPlan from "./components/pages/SignPlan";
 import NewPlanContext from "./contexts/NewPlanContext";
+import SignPlanDelivery from "./components/pages/SignPlanDelivery";
 
 export default function App() {
     const [userData, setUserData] = useState(null);
@@ -15,7 +16,7 @@ export default function App() {
 
     return (
         <UserContext.Provider value={{userData, setUserData}}>
-            <NewPlanContext.Provider value={{newPlan, setNewPlan}}>
+        <NewPlanContext.Provider value={{newPlan, setNewPlan}}>
             <BrowserRouter>
                 <Switch>
                     <Route path="/" exact>
@@ -34,14 +35,14 @@ export default function App() {
                         <SignPlan />
                     </Route>
                     <Route path="/sign-plan-delivery" exact>
-                        <SignPlan />
+                        <SignPlanDelivery />
                     </Route>
                     <Route path="*">
                         <Redirect to="/" />
                     </Route>
                 </Switch>
             </BrowserRouter>
-            </NewPlanContext.Provider>
+        </NewPlanContext.Provider>
         </UserContext.Provider>
     );
 }
