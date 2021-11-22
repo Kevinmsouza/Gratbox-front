@@ -85,13 +85,13 @@ const BlueText = styled.p`
 const WhiteBoard = styled.div`
     width: 90vw;
     max-width: 358px;
-    height: 429px;
+    height: ${props => props.height || "429px"};
     background: #FFFFFF;
     border-radius: 10px;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: ${props => props.noAling ? "initial" : "center"};
 `;
 
 const CardImg = styled.img`

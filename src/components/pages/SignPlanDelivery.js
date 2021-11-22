@@ -1,4 +1,9 @@
-import { BigText, BrandName, Button, CardImg, PageStyle, Select, SmallText, WhiteBoard } from "../shared/styledComponents";
+import { 
+    BigText, BrandName, 
+    Button, CardImg, 
+    PageStyle, Select, 
+    SmallText, WhiteBoard 
+} from "../shared/styledComponents";
 import image03 from "../../assets/images/image03.jpg";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../contexts/UserContext";

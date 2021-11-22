@@ -9,6 +9,7 @@ import Plans from "./components/pages/Plans";
 import SignPlan from "./components/pages/SignPlan";
 import NewPlanContext from "./contexts/NewPlanContext";
 import SignPlanDelivery from "./components/pages/SignPlanDelivery";
+import PlanDetails from "./components/pages/PlanDetails";
 
 export default function App() {
     const [userData, setUserData] = useState(null);
@@ -36,6 +37,9 @@ export default function App() {
                     </Route>
                     <Route path="/sign-plan-delivery" exact>
                         <SignPlanDelivery />
+                    </Route>
+                    <Route path="/plan-details" exact>
+                        <PlanDetails />
                     </Route>
                     <Route path="*">
                         <Redirect to="/" />
