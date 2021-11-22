@@ -4,6 +4,7 @@ import UserContext from "../../contexts/UserContext";
 import { BigText, BlueText, BrandName, Button, CardImg, PageStyle, Select, SmallText, WhiteBoard } from "../shared/styledComponents";
 import image03 from "../../assets/images/image03.jpg";
 import styled from "styled-components";
+import NewPlanContext from "../../contexts/NewPlanContext";
 
 export default function SignPlan() {
     const { userData } = useContext(UserContext);
@@ -12,6 +13,7 @@ export default function SignPlan() {
     const [ selectPlanId, setSelectPlanId] = useState(planId);
     const [ deliveryType, setDeliveryType] = useState(0);
     const [ products, setProducts ] = useState([true, true, true]);
+    const { newPlan, setNewPlan} = useContext(NewPlanContext);
 
     useEffect(() => {
         if (!userData) history.push('/');
@@ -19,7 +21,7 @@ export default function SignPlan() {
     }, [])
 
     function saveAndNext() {
-        
+
     }
 
     if (!userData) return <PageStyle></PageStyle>
