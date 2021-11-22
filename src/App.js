@@ -5,6 +5,7 @@ import Home from "./components/pages/Home";
 import SignUp from "./components/pages/SignUp";
 import Login from "./components/pages/Login";
 import UserContext from "./contexts/UserContext"
+import Plans from "./components/pages/Plans";
 
 export default function App() {
     const [userData, setUserData] = useState(null)
@@ -21,6 +22,9 @@ export default function App() {
                     </Route>
                     <Route path="/login" exact>
                         <Login />
+                    </Route>
+                    <Route path="/plans" exact>
+                        <Plans />
                     </Route>
                     <Route path="*">
                         <Redirect to="/" />

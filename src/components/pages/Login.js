@@ -23,7 +23,7 @@ export default function Login() {
         postLogin(body)
             .then(res => {
                 setUserData(res.data);
-                history.push("/plan");
+                history.push("/plans");
             })
             .catch(err => {
                 sendAlert({

@@ -73,6 +73,14 @@ const FrontPageInput = styled.input`
     }
 `;
 
+const BlueText = styled.p`
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #4D65A8;
+    max-width: 280px;
+    line-height: 21px;
+`;
 
 export { 
     PageStyle,
@@ -83,4 +91,5 @@ export {
     TextButton,
     FrontPageForm,
     FrontPageInput,
+    BlueText,
 };
