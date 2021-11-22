@@ -1,10 +1,12 @@
-import { BigText, BrandName, CardImg, PageStyle, Select, SmallText, WhiteBoard } from "../shared/styledComponents";
+import { BigText, BrandName, Button, CardImg, PageStyle, Select, SmallText, WhiteBoard } from "../shared/styledComponents";
 import image03 from "../../assets/images/image03.jpg";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import NewPlanContext from "../../contexts/NewPlanContext";
 import { useHistory } from "react-router";
 import styled from "styled-components";
+import { postPlan } from "../../services/gratibox";
+import { sendAlert } from "../shared/alerts";
 const states = [ 
     'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA',
     'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN',
@@ -20,13 +22,52 @@ export default function SignPlanDelivery() {
     const [address, setAddress] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const [city, setCity] = useState('');
-    const [stateId, setStateId] = useState(0);
+    const [stateId, setStateId] = useState('0');
 
     useEffect(() => {
         if (!userData) history.push('/');
         else if (userData.planId) history.push('/plan-details');
-        else if (!newPlan) history.push('/sign-plan')
+        else if (!newPlan) history.push('/sign-plan');
     }, [])
+
+    function signNewPlan(e) {
+        e.preventDefault();
+        if (stateId === '0') return;
+        const body = {
+            ...newPlan,
+            fullName,
+            address,
+            postalCode,
+            city,
+            stateId,
+        }
+        postPlan(body, userData.token)
+            .then(res => {
+                setUserData({...userData, planId: body.planId});
+                history.push('/plan-details');
+            })
+            .catch(err => sendAlert({
+                type: 'error',
+                title: 'Algo deu errado',
+                text: `Verifique todos os campos e tente novamente. 
+                    Se o erro persistir tente atualizar a pagina`
+            }))
+    }
+
+    function postalMasker(e) {
+        if(e.target.value.length === 5) {
+            if (!postalCode.includes('-')) {
+                return setPostalCode(e.target.value + '-');
+            }
+            else {
+                return setPostalCode(e.target.value.replace('-',''));
+            }
+        } 
+        if(e.target.value.length > 9) return;
+        setPostalCode(e.target.value);
+    }
+
+    if (!userData) return <PageStyle></PageStyle>
 
     return(
         <PageStyle>
@@ -38,25 +79,31 @@ export default function SignPlanDelivery() {
                 <CardImg src={image03} height='172px' marginBottom='30px' />
                 <FormWrapper>
                     <Input 
+                        required
                         type='text'
                         placeholder="Nome completo" 
                         value={fullName}
                         onChange={(e) => setFullname(e.target.value)}
                     />
                     <Input 
+                        required
                         type='text'
                         placeholder="Endereço de entrega" 
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                     />
                     <Input 
+                        required
                         type='text'
                         placeholder="CEP" 
+                        pattern='[0-9]{5}-[0-9]{3}'
+                        title='Ex: 12345-123'
                         value={postalCode}
-                        onChange={(e) => setPostalCode(e.target.value)}
+                        onChange={postalMasker}
                     />
                     <Wrapper>
                         <Input 
+                            required
                             type='text'
                             placeholder="Cidade" 
                             value={city}
@@ -70,6 +117,16 @@ export default function SignPlanDelivery() {
                     </Wrapper>
                 </FormWrapper>
             </WhiteBoard>
+            <Button 
+                type='submit'
+                width='202px' 
+                height='39px' 
+                font='24px' 
+                marginTop='12px'
+                onClick={signNewPlan}
+            >
+                Finalizar
+            </Button>
         </PageStyle>
     )
 }
@@ -102,6 +159,6 @@ const Input = styled.input`
 
 const Wrapper = styled.div`
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
+    gap: 5px;
 `;
