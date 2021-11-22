@@ -19,12 +19,17 @@ function postLogin(body) {
     return axios.post(`${BASE_URL}/login`, body)
 }
 
-function postPlan(body, token){
+function postPlan(body, token) {
     return axios.post(`${BASE_URL}/plans`, body, createConfig(token))
+}
+
+function getPlanInfo(token) {
+    return axios.get(`${BASE_URL}/plans`, createConfig(token))
 }
 
 export {
     postSignUp,
     postLogin,
     postPlan,
+    getPlanInfo,
 }
