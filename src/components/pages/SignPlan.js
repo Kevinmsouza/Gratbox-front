@@ -5,15 +5,16 @@ import { BigText, BlueText, BrandName, Button, CardImg, PageStyle, Select, Small
 import image03 from "../../assets/images/image03.jpg";
 import styled from "styled-components";
 import NewPlanContext from "../../contexts/NewPlanContext";
+import { sendAlert } from "../shared/alerts";
 
 export default function SignPlan() {
     const { userData } = useContext(UserContext);
     let history = useHistory();
     const { planId } = useParams();
     const [ selectPlanId, setSelectPlanId] = useState(planId);
-    const [ deliveryType, setDeliveryType] = useState(0);
+    const [ deliveryType, setDeliveryType] = useState('0');
     const [ products, setProducts ] = useState([true, true, true]);
-    const { newPlan, setNewPlan} = useContext(NewPlanContext);
+    const {setNewPlan} = useContext(NewPlanContext);
 
     useEffect(() => {
         if (!userData) history.push('/');
@@ -21,7 +22,19 @@ export default function SignPlan() {
     }, [])
 
     function saveAndNext() {
-
+        if (selectPlanId === '0' || deliveryType === '0' || !products.includes(true)) return sendAlert ({
+            type: 'error',
+            title: 'Algo deu errado',
+            text: 'Preencha todos os campos e tente novamente.'
+        })
+        const body = {
+            planId: Number(selectPlanId),
+            deliveryType: Number(deliveryType),
+            products: products.map((b, i) => b ? i + 1 : false).filter(e => e)
+        }
+        setNewPlan(body);
+        console.log(body)
+        history.push('/sign-plan-delivery')
     }
 
     if (!userData) return <PageStyle></PageStyle>

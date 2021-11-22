@@ -33,6 +33,9 @@ export default function App() {
                     <Route path="/sign-plan/:planId" exact>
                         <SignPlan />
                     </Route>
+                    <Route path="/sign-plan-delivery" exact>
+                        <SignPlan />
+                    </Route>
                     <Route path="*">
                         <Redirect to="/" />
                     </Route>
