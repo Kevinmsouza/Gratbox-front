@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useHistory } from "react-router";
-import AuthContext from "../../contexts/AuthContext";
+import UserContext from "../../contexts/UserContext";
 import { postLogin } from "../../services/gratibox";
 import { sendAlert } from "../shared/alerts";
 import { BigText, BrandName, Button, FrontPageForm, FrontPageInput, PageStyle, TextButton } from "../shared/styledComponents";
@@ -11,7 +11,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
     let history = useHistory();
     const [isLoading, setIsloading] = useState(false);
-    const {setToken} = useContext(AuthContext);
+    const {setUserData} = useContext(UserContext);
 
     function login(e) {
         e.preventDefault();
@@ -22,7 +22,7 @@ export default function Login() {
         };
         postLogin(body)
             .then(res => {
-                setToken(res.data);
+                setUserData(res.data);
                 history.push("/plan");
             })
             .catch(err => {
