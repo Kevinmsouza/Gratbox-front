@@ -4,13 +4,19 @@ import { useState } from "react";
 import Home from "./components/pages/Home";
 import SignUp from "./components/pages/SignUp";
 import Login from "./components/pages/Login";
-import AuthContext from "./contexts/AuthContext";
+import UserContext from "./contexts/UserContext"
+import Plans from "./components/pages/Plans";
+import SignPlan from "./components/pages/SignPlan";
+import NewPlanContext from "./contexts/NewPlanContext";
+import SignPlanDelivery from "./components/pages/SignPlanDelivery";
 
 export default function App() {
-    const [token, setToken] = useState('')
+    const [userData, setUserData] = useState(null);
+    const [newPlan, setNewPlan] = useState(null);
 
     return (
-        <AuthContext.Provider value={{token, setToken}}>
+        <UserContext.Provider value={{userData, setUserData}}>
+        <NewPlanContext.Provider value={{newPlan, setNewPlan}}>
             <BrowserRouter>
                 <Switch>
                     <Route path="/" exact>
@@ -22,11 +28,21 @@ export default function App() {
                     <Route path="/login" exact>
                         <Login />
                     </Route>
+                    <Route path="/plans" exact>
+                        <Plans />
+                    </Route>
+                    <Route path="/sign-plan/:planId" exact>
+                        <SignPlan />
+                    </Route>
+                    <Route path="/sign-plan-delivery" exact>
+                        <SignPlanDelivery />
+                    </Route>
                     <Route path="*">
                         <Redirect to="/" />
                     </Route>
                 </Switch>
             </BrowserRouter>
-        </AuthContext.Provider>
+        </NewPlanContext.Provider>
+        </UserContext.Provider>
     );
 }

@@ -11,7 +11,7 @@ export default function Home() {
             <BigText marginTop='55px'>
                 Bem vindo ao <BrandName>GratiBox</BrandName>
             </BigText>
-            <SmallText>
+            <SmallText marginTop='45px'>
                 Receba em casa um box com chás, produtos organicos, incensos e
                 muito mais...
             </SmallText>
