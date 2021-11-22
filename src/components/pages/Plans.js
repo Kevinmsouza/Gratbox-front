@@ -26,7 +26,15 @@ export default function Plans() {
                     Você recebe um box por semana. 
                     Ideal para quem quer exercer a gratidão todos os dias.
                 </BlueText>
-                <Button width='168px' height='39px' font='24px' marginTop='40px'>Assinar</Button>
+                <Button 
+                    width='168px' 
+                    height='39px' 
+                    font='24px' 
+                    marginTop='40px'
+                    onClick={() => history.push('/sign-plan/1')}
+                >
+                    Assinar
+                </Button>
             </PlanCard>
             <PlanCard>
                 <CardImg src={image04} />
@@ -34,7 +42,15 @@ export default function Plans() {
                 Você recebe um box por mês.      
                 Ideal para quem está começando agora.
                 </BlueText>
-                <Button width='168px' height='39px' font='24px' marginTop='40px'>Assinar</Button>
+                <Button 
+                    width='168px' 
+                    height='39px' 
+                    font='24px' 
+                    marginTop='40px'
+                    onClick={() => history.push('/sign-plan/2')}
+                >
+                    Assinar
+                </Button>
             </PlanCard>
         </PageStyle>
     )
