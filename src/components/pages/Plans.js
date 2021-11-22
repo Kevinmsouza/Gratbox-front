@@ -3,7 +3,8 @@ import { useHistory } from "react-router";
 import styled from "styled-components";
 import UserContext from "../../contexts/UserContext";
 import { BigText, BrandName, PageStyle, SmallText, BlueText, Button } from "../shared/styledComponents";
-import image04 from "../../assets/images/image04.jpg"
+import image04 from "../../assets/images/image04.jpg";
+import image02 from "../../assets/images/image02.jpg";
 
 export default function Plans() {
     const { userData, setUserData } = useContext(UserContext);
@@ -11,8 +12,10 @@ export default function Plans() {
 
     useEffect(() => {
         if (!userData) history.push('/');
-        if (userData.planId) history.push('/plan-details');
+        else if (userData.planId) history.push('/plan-details');
     }, [])
+
+    if (!userData) return <PageStyle></PageStyle>
 
     return(
         <PageStyle>
@@ -37,7 +40,7 @@ export default function Plans() {
                 </Button>
             </PlanCard>
             <PlanCard>
-                <CardImg src={image04} />
+                <CardImg src={image02} />
                 <BlueText>
                     Você recebe um box por mês.      
                     Ideal para quem está começando agora.
