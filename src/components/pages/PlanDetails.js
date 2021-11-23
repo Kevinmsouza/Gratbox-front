@@ -46,15 +46,15 @@ export default function PlanDetails() {
                     <BlueText marginTop='0px'>Data da assinatura: <PinkText>{planInfo.signDate}</PinkText></BlueText>
                     <BlueText marginTop='0px'>Próximas entregas:</BlueText>
                     <DateWrapper>
-                        {planInfo.deliveryDates.map((date) => (
-                            <BlueText marginTop='0px'>
+                        {planInfo.deliveryDates.map((date, i) => (
+                            <BlueText key={i} marginTop='0px'>
                                 <PinkText>{date}</PinkText>
                             </BlueText>
                         ))}
                     </DateWrapper>
                 </TextWrapper>
                 <ProductsWrapper>
-                    {planInfo.products.map(e => <p>{e.name}</p>)}
+                    {planInfo.products.map((e, i) => <p key={i}>{e.name}</p>)}
                 </ProductsWrapper>
             </WhiteBoard>
             <Button 

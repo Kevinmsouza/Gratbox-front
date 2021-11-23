@@ -46,7 +46,7 @@ export default function Login() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    pattern="^\S+@\S+\.\S+$"
                     title="exemplo@exemplo.com"
                     placeholder="Email"
                     required
