@@ -67,7 +67,11 @@ PORT=4000
 
    <br />
 
-6. Run (copy & paste) the dump.sql statements in database
+6. Use the dump.sql to create the tables of the database
+
+```sh
+psql -d nameOfNewDatabase -f dump.sql
+```
    <br />
    <br />
 
